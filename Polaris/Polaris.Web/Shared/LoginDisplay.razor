@@ -1,0 +1,12 @@
+﻿<AuthorizeView>
+    <Authorized>
+        @if (context.User.Claims.Any(c => c.Type == "name"))
+        {
+            @($"Hello, {@context.User.Claims.FirstOrDefault(c => c.Type == "name")?.Value}!")
+        }
+        <a href="AzureAD/Account/SignOut">Log out</a>
+    </Authorized>
+    <NotAuthorized>
+        <a href="AzureAD/Account/SignIn">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
