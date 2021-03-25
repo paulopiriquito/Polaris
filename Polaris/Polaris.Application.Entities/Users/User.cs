@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using Polaris.Application.Entities.Targets;
+using Polaris.Application.Entities.Users.Types;
 
 namespace Polaris.Application.Entities.Users
 {

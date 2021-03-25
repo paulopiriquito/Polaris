@@ -1,0 +1,44 @@
+﻿@page "/Organizations"
+@using Polaris.Application.Entities.Users
+@using Polaris.Application.Entities.Users.Types
+@using Polaris.Application.Entities.Organizations
+@inject IOrganizationContext OrganizationContext
+@inject IUserService UserService
+
+<h3>Organization</h3>
+
+@foreach (var org in OrganizationContext.Organizations.GetAll())
+{
+    <p>Organization: @org.Name</p>
+    <p>Admin: @org.Administrator.Fullname</p>
+}
+
+<div class="input-group mb-3">
+    <div class="form-outline">
+        <label class="form-label" for="form_name">Name</label>
+        <input type="text" id="form_name" class="form-control" @bind="Current.Name" placeholder="Name"/>
+    </div>
+</div>
+
+<button
+    type="button"
+    class="btn btn-primary"
+    @onclick="() => { OrganizationContext.Organizations.Add(Current); OrganizationContext.Organizations.TryCommitChanges(); SetCurrent(); StateHasChanged();}">
+    Create Organization
+</button>
+
+
+@code
+{
+    Organization Current { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await SetCurrent();
+    }
+
+    private async Task SetCurrent()
+    {
+        Current = new Organization("", await UserService.GetCurrentUser());
+    }
+}

@@ -1,4 +1,4 @@
-﻿namespace Polaris.Aplication.Entities.Activities
+﻿namespace Polaris.Application.Entities.Activities
 {
     public class Discussion
     {
