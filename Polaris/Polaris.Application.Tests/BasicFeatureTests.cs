@@ -5,6 +5,7 @@ using Polaris.Application.Entities.Organizations;
 using Polaris.Application.Entities.Quantifiers;
 using Polaris.Application.Entities.Targets;
 using Polaris.Application.Entities.Users;
+using Polaris.Application.Entities.Users.Types;
 using Shouldly;
 using Xunit;
 

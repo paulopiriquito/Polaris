@@ -1,4 +1,4 @@
-﻿namespace Polaris.Application.Entities.Users
+﻿namespace Polaris.Application.Entities.Users.Types
 {
     public class Tester : UserType
     {

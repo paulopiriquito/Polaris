@@ -6,6 +6,7 @@ using Polaris.Application.Entities.Quantifiers;
 using Polaris.Application.Entities.Targets;
 using Polaris.Application.Entities.Users;
 using Polaris.Application.Entities.Activities;
+using Polaris.Application.Entities.Users.Types;
 
 namespace Polaris.Services
 {

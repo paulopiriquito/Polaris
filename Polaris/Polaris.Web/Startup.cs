@@ -15,6 +15,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Polaris.Application;
+using Polaris.Services;
+using Polaris.Services.DataAccess.OnMemory;
 
 namespace Polaris.Web
 {
@@ -79,6 +82,10 @@ namespace Polaris.Web
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            
+            services.AddDataAccessOnMemory();
+            services.AddServices();
+            services.AddApplication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
