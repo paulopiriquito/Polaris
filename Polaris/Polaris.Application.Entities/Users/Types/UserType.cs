@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Polaris.Application.Entities.Users
+namespace Polaris.Application.Entities.Users.Types
 {
     public abstract class UserType
     {

@@ -14,7 +14,7 @@ namespace Polaris.Application.Repositories
         public T Update(Guid id, T updatedData);
         public void Delete(T input);
         public void Delete(Guid id);
-        public bool TryCommitChanges();
+        public void TryCommitChanges();
         public bool TryRollbackChanges();
     }
 }

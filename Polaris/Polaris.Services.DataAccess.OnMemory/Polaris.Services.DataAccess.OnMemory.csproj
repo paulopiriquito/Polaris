@@ -5,7 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Polaris.Application.Entities\Polaris.Application.Entities.csproj" />
       <ProjectReference Include="..\Polaris.Application\Polaris.Application.csproj" />
     </ItemGroup>
 
