@@ -1,5 +1,5 @@
 ﻿using System;
-using Polaris.Application.Entities.Organizations;
+using Polaris.Application.Entities.Organisations;
 using Polaris.Application.Entities.Users;
 using Polaris.Application.Entities.Users.Types;
 using Polaris.Application.Repositories.DataContexts;
@@ -10,42 +10,42 @@ using Xunit;
 
 namespace Polaris.Services.DataAccess.OnMemory.Tests.Stores
 {
-    public class OrganizationStoreTests
+    public class OrganisationStoreTests
     {
         [Fact]
-        public void CanSaveOrganization()
+        public void CanSaveOrganisation()
         {
             var user = new User("Paulo", "Piriquito", "test@mail.com", new Developer());
             
-            var org = new Organization("Cofidis", user);
+            var org = new Organisation("Cofidis", user);
             org.ShouldNotBeNull();
-            org.OrganizationId.ShouldNotBe(Guid.Empty);
+            org.OrganisationId.ShouldNotBe(Guid.Empty);
 
-            IOrganizationContext context = new OrganizationContext();
+            IOrganisationContext context = new OrganisationContext();
             
-            context.Organizations.Add(org);
-            context.Organizations.TryCommitChanges();
+            context.Organisations.Add(org);
+            context.Organisations.TryCommitChanges();
 
-            context.Organizations.FindByGuid(org.Id)
+            context.Organisations.FindByGuid(org.Id)
                 .ShouldNotBeNull()
                 .Id.ShouldBe(org.Id);
         }
         
         [Fact]
-        public void CanRollbackOrganization()
+        public void CanRollbackOrganisation()
         {
             var user = new User("Paulo", "Piriquito", "test@mail.com", new Developer());
             
-            var org = new Organization("Cofidis", user);
+            var org = new Organisation("Cofidis", user);
             org.ShouldNotBeNull();
-            org.OrganizationId.ShouldNotBe(Guid.Empty);
+            org.OrganisationId.ShouldNotBe(Guid.Empty);
 
-            IOrganizationContext context = new OrganizationContext();
+            IOrganisationContext context = new OrganisationContext();
             
-            context.Organizations.Add(org);
-            context.Organizations.TryRollbackChanges();
+            context.Organisations.Add(org);
+            context.Organisations.TryRollbackChanges();
 
-            context.Organizations.FindByGuid(org.Id)
+            context.Organisations.FindByGuid(org.Id)
                 .ShouldBeNull();
         }
     }

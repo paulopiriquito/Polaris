@@ -1,25 +1,25 @@
-﻿@page "/Organizations"
+﻿@page "/Organisations"
 @using Polaris.Application.Entities.Users
-@using Polaris.Application.Entities.Organizations
-@using Polaris.Web.Shared.Organizations
-@inject IOrganizationContext OrganizationContext
+@using Polaris.Web.Shared.Organisations
+@using Polaris.Application.Entities.Organisations
+@inject IOrganisationContext OrganisationContext
 @inject IUserService UserService
 
 <div>
-    <MyOrganizations CurrentUser="@CurrentUser" OrganizationContext="@OrganizationContext"/>
+    <MyOrganisations CurrentUser="@CurrentUser" OrganisationContext="@OrganisationContext"/>
 </div>
 
 <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon" @bind="Current.Name">
     <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" @onclick="SaveOrganization">Create</button>
+        <button class="btn btn-outline-secondary" type="button" @onclick="SaveOrganisation">Create</button>
     </div>
 </div>
 
 
 @code
 {
-    Organization Current { get; set; }
+    Organisation Current { get; set; }
     
     User CurrentUser { get; set; }
 
@@ -31,13 +31,13 @@
 
     private void SetCurrent()
     {
-        Current = new Organization("", CurrentUser);
+        Current = new Organisation("", CurrentUser);
     }
 
-    private void SaveOrganization()
+    private void SaveOrganisation()
     {
-        OrganizationContext.Organizations.Add(Current);
-        OrganizationContext.Organizations.TryCommitChanges();
+        OrganisationContext.Organisations.Add(Current);
+        OrganisationContext.Organisations.TryCommitChanges();
         SetCurrent();
         StateHasChanged();
     }

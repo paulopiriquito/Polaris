@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Polaris.Application.Entities.Configurations;
-using Polaris.Application.Entities.Organizations;
+using Polaris.Application.Entities.Organisations;
 using Polaris.Application.Entities.Quantifiers;
 using Polaris.Application.Entities.Targets;
 using Polaris.Application.Entities.Users;
@@ -23,20 +23,20 @@ namespace Polaris.Application.Tests
         }
         
         [Fact]
-        public void CanCreateOrganization()
+        public void CanCreateOrganisation()
         {
             var user = new User("Paulo", "Piriquito", "test@mail.com", new Developer());
             
-            var org = new Organization("Cofidis", user);
+            var org = new Organisation("Cofidis", user);
             org.ShouldNotBeNull();
-            org.OrganizationId.ShouldNotBe(Guid.Empty);
+            org.OrganisationId.ShouldNotBe(Guid.Empty);
         }
         
         [Fact]
         public void CanCreateTeam()
         {
             var user = new User("Paulo", "Piriquito", "test@mail.com", new Developer());
-            var org = new Organization("Cofidis", user);
+            var org = new Organisation("Cofidis", user);
             
             var team = new Team(org, user);
             team.ShouldNotBeNull();
@@ -47,7 +47,7 @@ namespace Polaris.Application.Tests
         public void CanCreateUserStory()
         {
             var user = new User("Paulo", "Piriquito", "test@mail.com", new Developer());
-            var org = new Organization("Cofidis", user);
+            var org = new Organisation("Cofidis", user);
             var team = new Team(org, user);
 
             var story = new UserStory("TestStory", "Testing", new Priority(1), user, team, "1");
@@ -60,7 +60,7 @@ namespace Polaris.Application.Tests
         public void CanCreateBuckets()
         {
             var user = new User("Paulo", "Piriquito", "test@mail.com", new Developer());
-            var org = new Organization("Cofidis", user);
+            var org = new Organisation("Cofidis", user);
             
             var bucketConfiguration = new BucketConfiguration("TestBucket", "Testing", user);
             bucketConfiguration.BucketConfigurationId.ShouldNotBe(Guid.Empty);

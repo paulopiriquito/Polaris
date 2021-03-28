@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using Polaris.Application;
 using Polaris.Application.Entities.Configurations;
-using Polaris.Application.Entities.Organizations;
 using Polaris.Application.Entities.Quantifiers;
 using Polaris.Application.Entities.Targets;
 using Polaris.Application.Entities.Users;
 using Polaris.Application.Entities.Activities;
+using Polaris.Application.Entities.Organisations;
 using Polaris.Application.Entities.Users.Types;
 
 namespace Polaris.Services
 {
     public class VotingTestService
     {
-        public Organization Organization;
+        public Organisation Organisation;
         public Team Team;
         public TeamUser CurrentUser;
         public IVotingPokerSession PokerSession;
@@ -23,8 +23,8 @@ namespace Polaris.Services
         public VotingTestService()
         {
             var basicUser = new User("Paulo", "Piriquito", "test@mail.com", new Developer());
-            Organization = new Organization("Cofidis", basicUser);
-            Team = new Team(Organization, basicUser);
+            Organisation = new Organisation("Cofidis", basicUser);
+            Team = new Team(Organisation, basicUser);
             
             CurrentUser = TeamUser.Upgrade(ref basicUser, Team);
             

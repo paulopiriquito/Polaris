@@ -8,86 +8,86 @@ namespace Polaris.Services.DataAccess.OnMemory.Stores
 {
     public abstract class Store<T> : ICrudRepository<T> where T : class, IEntity
     {
-        private static readonly Dictionary<Guid, T> OrganizationsCommitted = new Dictionary<Guid, T>();
-        private readonly Dictionary<Guid, StateTracker<T>> _organizations = new Dictionary<Guid, StateTracker<T>>();
+        private static readonly Dictionary<Guid, T> OrganisationsCommitted = new Dictionary<Guid, T>();
+        private readonly Dictionary<Guid, StateTracker<T>> _organisations = new Dictionary<Guid, StateTracker<T>>();
         
         public virtual IEnumerable<T> GetAll()
         {
-            return OrganizationsCommitted.Values;
+            return OrganisationsCommitted.Values;
         }
 
         public virtual IEnumerable<T> Where(Predicate<T> expression)
         {
-            return OrganizationsCommitted.Values.Where(expression.Invoke);
+            return OrganisationsCommitted.Values.Where(expression.Invoke);
         }
 
         public virtual T FirstOrDefault(Predicate<T> expression)
         {
-            return OrganizationsCommitted.Values.FirstOrDefault(expression.Invoke);
+            return OrganisationsCommitted.Values.FirstOrDefault(expression.Invoke);
         }
 
         public virtual T FindByGuid(Guid id)
         {
-            OrganizationsCommitted.TryGetValue(id, out var value);
+            OrganisationsCommitted.TryGetValue(id, out var value);
             return value;
         }
 
         public virtual void Add(T input)
         {
-            _organizations.Add(input.Id, new StateTracker<T>(input){Added = true});
+            _organisations.Add(input.Id, new StateTracker<T>(input){Added = true});
         }
 
         public virtual T Update(Guid id, T updatedData)
         {
-            var (key, value) = _organizations.FirstOrDefault(x => x.Value.Value.Id == id);
+            var (key, value) = _organisations.FirstOrDefault(x => x.Value.Value.Id == id);
             value.Updated = true;
-            _organizations[key] = value;
+            _organisations[key] = value;
             return value.Value;
         }
 
         public virtual void Delete(T input)
         {
-            var (key, value) = _organizations.FirstOrDefault(x => x.Value.Value.Id == input.Id);
+            var (key, value) = _organisations.FirstOrDefault(x => x.Value.Value.Id == input.Id);
             value.Deleted = true;
-            _organizations[key] = value;
+            _organisations[key] = value;
         }
 
         public virtual void Delete(Guid id)
         {
-            var (key, value) = _organizations.FirstOrDefault(x => x.Value.Value.Id == id);
+            var (key, value) = _organisations.FirstOrDefault(x => x.Value.Value.Id == id);
             value.Deleted = true;
-            _organizations[key] = value;
+            _organisations[key] = value;
         }
 
         public virtual void TryCommitChanges()
         {
-            lock (OrganizationsCommitted)
+            lock (OrganisationsCommitted)
             {
-                foreach (var (key, tracker) in _organizations)
+                foreach (var (key, tracker) in _organisations)
                 {
                     if (tracker.Updated)
                     {
-                        OrganizationsCommitted[key] = tracker.Value;
+                        OrganisationsCommitted[key] = tracker.Value;
                         break;
                     }
                     if (tracker.Added)
                     {
-                        OrganizationsCommitted.Add(key, tracker.Value);
+                        OrganisationsCommitted.Add(key, tracker.Value);
                         break;
                     }
                     if (tracker.Deleted)
                     {
-                        OrganizationsCommitted.Remove(key);
+                        OrganisationsCommitted.Remove(key);
                         break;
                     }
                 }
-                _organizations.Clear();
+                _organisations.Clear();
             }
         }
 
         public virtual bool TryRollbackChanges()
         {
-            _organizations.Clear();
+            _organisations.Clear();
             return true;
         }
         

@@ -1,0 +1,24 @@
+﻿@using Polaris.Application.Entities.Users
+@using Polaris.Application.Entities.Organisations
+
+<h3>My Organisations</h3>
+
+<OrganisationsTable Collection="@UserOrganisations" Type="@typeof(Organisation)"/>
+
+@code {
+    [Parameter]
+    public IOrganisationContext OrganisationContext { get; set; }
+    
+    [Parameter]
+    public User CurrentUser { get; set; }
+    
+    private IEnumerable<Organisation> UserOrganisations { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (CurrentUser != null && OrganisationContext != null)
+        {
+            UserOrganisations = OrganisationContext.UserOrganisations(CurrentUser);
+        }
+    }
+}
