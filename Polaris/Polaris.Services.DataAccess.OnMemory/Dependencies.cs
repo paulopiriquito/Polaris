@@ -10,6 +10,7 @@ namespace Polaris.Services.DataAccess.OnMemory
         {
             services.AddScoped<IFullDataContext>(provider => new FullDataContext());
             services.AddScoped<IOrganizationContext>(provider => new OrganizationContext());
+            services.AddScoped<IUserContext>(provider => new UserContext());
             return services;
         }
     }

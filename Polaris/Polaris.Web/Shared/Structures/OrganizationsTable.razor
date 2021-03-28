@@ -1,5 +1,7 @@
 ﻿@using System.Reflection
 @using System.ComponentModel
+@using Polaris.Application.Entities.Organizations
+@using Polaris.Application.Entities.Users
 @if (Collection != null)
 {
     <table>
@@ -14,9 +16,16 @@
             <tr>
                 @foreach (var property in ColumnsProperties[Type])
                 {
-                    if (property.PropertyType.IsValueType)
+                    if (property.PropertyType.IsValueType || property.PropertyType == typeof(string))
                     {
                         <td>@property.GetValue(item)?.ToString()</td>
+                    }
+                    else
+                    {
+                        if (property.PropertyType == typeof(User))
+                        {
+                            <td>@(item.Administrator.Fullname)</td>
+                        }
                     }
                 }
             </tr>
@@ -29,7 +38,7 @@
     public Type Type { get; set; }
     
     [Parameter]
-    public IEnumerable<object> Collection { get; set; }
+    public IEnumerable<Organization> Collection { get; set; }
 
     private List<string> ColumnNames { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Polaris.Application.Entities.Users;
 
 namespace Polaris.Application.Entities.Organizations
@@ -16,10 +17,12 @@ namespace Polaris.Application.Entities.Organizations
         
         public Guid OrganizationId { get; set; } = Guid.NewGuid();
 
+        [DisplayName("Name")]
         public string Name { get; set; }
 
         public IList<Team> Teams { get; set; } = new List<Team>();
 
+        [DisplayName("Owner")]
         public User Administrator { get; set; }
     }
 }

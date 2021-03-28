@@ -1,18 +1,14 @@
 ﻿@page "/Organizations"
 @using Polaris.Application.Entities.Users
-@using Polaris.Application.Entities.Users.Types
 @using Polaris.Application.Entities.Organizations
+@using Polaris.Web.Shared.Organizations
 @inject IOrganizationContext OrganizationContext
 @inject IUserService UserService
 
 <h3>Organization</h3>
-
-@foreach (var org in OrganizationContext.Organizations.GetAll())
-{
-    <p>Organization: @org.Name</p>
-    <p>Admin: @org.Administrator.Fullname</p>
-}
-
+<div>
+    <MyOrganizations CurrentUser="@CurrentUser" OrganizationContext="@OrganizationContext"/>
+</div>
 <div class="input-group mb-3">
     <div class="form-outline">
         <label class="form-label" for="form_name">Name</label>
@@ -23,7 +19,7 @@
 <button
     type="button"
     class="btn btn-primary"
-    @onclick="() => { OrganizationContext.Organizations.Add(Current); OrganizationContext.Organizations.TryCommitChanges(); SetCurrent(); StateHasChanged();}">
+    @onclick="SaveOrganization">
     Create Organization
 </button>
 
@@ -31,14 +27,25 @@
 @code
 {
     Organization Current { get; set; }
+    
+    User CurrentUser { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await SetCurrent();
+        CurrentUser = await UserService.GetCurrentUser();
+        SetCurrent();
     }
 
-    private async Task SetCurrent()
+    private void SetCurrent()
     {
-        Current = new Organization("", await UserService.GetCurrentUser());
+        Current = new Organization("", CurrentUser);
+    }
+
+    private void SaveOrganization()
+    {
+        OrganizationContext.Organizations.Add(Current);
+        OrganizationContext.Organizations.TryCommitChanges();
+        SetCurrent();
+        StateHasChanged();
     }
 }
