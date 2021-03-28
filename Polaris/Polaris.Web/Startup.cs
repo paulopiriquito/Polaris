@@ -45,7 +45,7 @@ namespace Polaris.Web
                     // line of business apps), we inject our own multitenant validation logic
                     ValidateIssuer = false,
 
-                    // If the app is meant to be accessed by entire organizations, add your issuer validation logic here.
+                    // If the app is meant to be accessed by entire organisations, add your issuer validation logic here.
                     //IssuerValidator = (issuer, securityToken, validationParameters) => {
                     //    if (myIssuerValidationLogic(issuer)) return issuer;
                     //}

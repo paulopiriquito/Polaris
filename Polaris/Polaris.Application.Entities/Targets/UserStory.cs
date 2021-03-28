@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Polaris.Application.Entities.Organizations;
+using Polaris.Application.Entities.Organisations;
 using Polaris.Application.Entities.Quantifiers;
 using Polaris.Application.Entities.Users;
 using Polaris.Application.Entities.WorkItems;

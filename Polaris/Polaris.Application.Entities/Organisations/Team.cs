@@ -4,24 +4,25 @@ using Polaris.Application.Entities.Activities;
 using Polaris.Application.Entities.Configurations;
 using Polaris.Application.Entities.Users;
 
-namespace Polaris.Application.Entities.Organizations
+namespace Polaris.Application.Entities.Organisations
 {
     public class Team
     {
-        public Team(Organization organization, User owner) : this(organization, owner, new List<BucketConfiguration>())
+        public Team(Organisation organisation, User owner) : this(organisation, owner, new List<BucketConfiguration>())
         {
+            Members.Add(TeamUser.Upgrade(ref owner, this));
         }
 
-        public Team(Organization organization, User owner, IList<BucketConfiguration> bucketConfigurations)
+        public Team(Organisation organisation, User owner, IList<BucketConfiguration> bucketConfigurations)
         {
-            Organization = organization;
+            Organisation = organisation;
             Owner = owner;
             BucketConfigurations = bucketConfigurations;
         }
 
         public Guid TeamId { get; set; } = Guid.NewGuid();
 
-        public Organization Organization { get; set; }
+        public Organisation Organisation { get; set; }
 
         public User Owner { get; set; }
 

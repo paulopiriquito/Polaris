@@ -1,4 +1,4 @@
-﻿using Polaris.Application.Entities.Organizations;
+﻿using Polaris.Application.Entities.Organisations;
 using Polaris.Application.Entities.Users.Types;
 
 namespace Polaris.Application.Entities.Users

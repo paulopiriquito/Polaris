@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Polaris.Application.Entities.Activities;
-using Polaris.Application.Entities.Organizations;
+using Polaris.Application.Entities.Organisations;
 
 namespace Polaris.Application.Entities.History
 {

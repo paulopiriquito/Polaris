@@ -6,7 +6,7 @@ using Polaris.Application.Entities.Users.Types;
 
 namespace Polaris.Application.Entities.Users
 {
-    public class User
+    public class User : IEntity
     {
         public User(string firstName, string lastName, string email, UserType userType)
         {
@@ -28,5 +28,6 @@ namespace Polaris.Application.Entities.Users
         public UserType UserType { get; set; }
 
         public IEnumerable<UserStory> UserStories { get; set; } = new List<UserStory>();
+        public Guid Id => UserId;
     }
 }

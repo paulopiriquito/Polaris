@@ -1,0 +1,44 @@
+﻿@page "/Organisations"
+@using Polaris.Application.Entities.Users
+@using Polaris.Web.Shared.Organisations
+@using Polaris.Application.Entities.Organisations
+@inject IOrganisationContext OrganisationContext
+@inject IUserService UserService
+
+<div>
+    <MyOrganisations CurrentUser="@CurrentUser" OrganisationContext="@OrganisationContext"/>
+</div>
+
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon" @bind="Current.Name">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" @onclick="SaveOrganisation">Create</button>
+    </div>
+</div>
+
+
+@code
+{
+    Organisation Current { get; set; }
+    
+    User CurrentUser { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentUser = await UserService.GetCurrentUser();
+        SetCurrent();
+    }
+
+    private void SetCurrent()
+    {
+        Current = new Organisation("", CurrentUser);
+    }
+
+    private void SaveOrganisation()
+    {
+        OrganisationContext.Organisations.Add(Current);
+        OrganisationContext.Organisations.TryCommitChanges();
+        SetCurrent();
+        StateHasChanged();
+    }
+}

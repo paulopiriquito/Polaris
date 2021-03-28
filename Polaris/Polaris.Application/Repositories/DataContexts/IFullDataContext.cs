@@ -1,9 +1,9 @@
-﻿using Polaris.Application.Entities.Organizations;
+﻿using Polaris.Application.Entities.Organisations;
 
 namespace Polaris.Application.Repositories.DataContexts
 {
     public interface IFullDataContext
     {
-        public ICrudRepository<Organization> Organizations { get; set; }
+        public ICrudRepository<Organisation> Organisations { get; set; }
     }
 }

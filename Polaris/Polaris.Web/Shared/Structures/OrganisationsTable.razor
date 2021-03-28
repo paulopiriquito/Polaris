@@ -1,0 +1,80 @@
+﻿@using System.Reflection
+@using System.ComponentModel
+@using Polaris.Application.Entities.Organisations
+@using Polaris.Application.Entities.Users
+@if (Collection != null)
+{
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            @foreach (var displayNameAttribute in ColumnsAttributes[Type])
+            {
+                <th scope="col">@displayNameAttribute.DisplayName</th>
+            }
+        </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Collection)
+                {
+                    <tr>
+                        @foreach (var property in ColumnsProperties[Type])
+                        {
+                            if (property.PropertyType.IsValueType || property.PropertyType == typeof(string))
+                            {
+                                <td>@property.GetValue(item)?.ToString()</td>
+                            }
+                            else
+                            {
+                                if (property.PropertyType == typeof(User))
+                                {
+                                    <td>@(item.Administrator.Fullname)</td>
+                                }
+                            }
+                        }
+                    </tr>
+                }
+        </tbody>
+    </table> 
+}
+
+@code {
+    [Parameter]
+    public Type Type { get; set; }
+    
+    [Parameter]
+    public IEnumerable<Organisation> Collection { get; set; }
+
+    private List<string> ColumnNames { get; set; }
+
+    private static Dictionary<Type, List<string>> ColumnsForTypes { get; } = new();
+    private static Dictionary<Type, IEnumerable<PropertyInfo>> ColumnsProperties { get; } = new();
+    private static Dictionary<Type, IEnumerable<DisplayNameAttribute>> ColumnsAttributes { get; } = new();
+
+    protected override void OnParametersSet()
+    {
+        SetCollumNames();
+    }
+
+    private void SetCollumNames()
+    {
+        if (ColumnsForTypes.TryGetValue(Type, out var savedNames))
+        {
+            ColumnNames = savedNames;
+        }
+        else
+        {
+            var propertyInfos = Type.GetProperties().Where(info => info.GetCustomAttribute<DisplayNameAttribute>() != null);
+            var attributes = propertyInfos.Select(x => x.GetCustomAttribute<DisplayNameAttribute>());
+            ColumnsAttributes.Add(Type, attributes);
+            ColumnsProperties.Add(Type, propertyInfos);
+            var namesForType =
+                (from displayNameAttribute in attributes
+                    where displayNameAttribute != null
+                    select displayNameAttribute.DisplayName)
+                    .ToList();
+            ColumnsForTypes.Add(Type, namesForType);
+            ColumnNames = namesForType;
+        }
+    }
+
+}
