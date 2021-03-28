@@ -4,32 +4,36 @@
 @using Polaris.Application.Entities.Users
 @if (Collection != null)
 {
-    <table>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
         <tr>
-            @foreach(var displayNameAttribute in ColumnsAttributes[Type])
+            @foreach (var displayNameAttribute in ColumnsAttributes[Type])
             {
-                <th>@displayNameAttribute.DisplayName</th>
+                <th scope="col">@displayNameAttribute.DisplayName</th>
             }
         </tr>
-        @foreach (var item in Collection)
-        {
-            <tr>
-                @foreach (var property in ColumnsProperties[Type])
+        </thead>
+        <tbody>
+                @foreach (var item in Collection)
                 {
-                    if (property.PropertyType.IsValueType || property.PropertyType == typeof(string))
-                    {
-                        <td>@property.GetValue(item)?.ToString()</td>
-                    }
-                    else
-                    {
-                        if (property.PropertyType == typeof(User))
+                    <tr>
+                        @foreach (var property in ColumnsProperties[Type])
                         {
-                            <td>@(item.Administrator.Fullname)</td>
+                            if (property.PropertyType.IsValueType || property.PropertyType == typeof(string))
+                            {
+                                <td>@property.GetValue(item)?.ToString()</td>
+                            }
+                            else
+                            {
+                                if (property.PropertyType == typeof(User))
+                                {
+                                    <td>@(item.Administrator.Fullname)</td>
+                                }
+                            }
                         }
-                    }
+                    </tr>
                 }
-            </tr>
-        }
+        </tbody>
     </table> 
 }
 

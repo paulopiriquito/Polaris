@@ -5,23 +5,16 @@
 @inject IOrganizationContext OrganizationContext
 @inject IUserService UserService
 
-<h3>Organization</h3>
 <div>
     <MyOrganizations CurrentUser="@CurrentUser" OrganizationContext="@OrganizationContext"/>
 </div>
+
 <div class="input-group mb-3">
-    <div class="form-outline">
-        <label class="form-label" for="form_name">Name</label>
-        <input type="text" id="form_name" class="form-control" @bind="Current.Name" placeholder="Name"/>
+    <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon" @bind="Current.Name">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" @onclick="SaveOrganization">Create</button>
     </div>
 </div>
-
-<button
-    type="button"
-    class="btn btn-primary"
-    @onclick="SaveOrganization">
-    Create Organization
-</button>
 
 
 @code
