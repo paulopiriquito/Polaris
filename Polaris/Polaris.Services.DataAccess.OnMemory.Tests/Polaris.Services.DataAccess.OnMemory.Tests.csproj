@@ -23,10 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DataContexts" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Polaris.Application\Polaris.Application.csproj" />
       <ProjectReference Include="..\Polaris.Services.DataAccess.OnMemory\Polaris.Services.DataAccess.OnMemory.csproj" />
     </ItemGroup>

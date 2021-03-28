@@ -10,6 +10,7 @@ namespace Polaris.Application.Entities.Organizations
     {
         public Team(Organization organization, User owner) : this(organization, owner, new List<BucketConfiguration>())
         {
+            Members.Add(TeamUser.Upgrade(ref owner, this));
         }
 
         public Team(Organization organization, User owner, IList<BucketConfiguration> bucketConfigurations)

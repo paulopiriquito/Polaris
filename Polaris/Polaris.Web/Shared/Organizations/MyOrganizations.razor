@@ -1,0 +1,16 @@
+﻿@using Polaris.Application.Entities.Organizations
+@inject IOrganizationContext OrganizationContext
+@inject IUserService UserService
+
+<h3>My Organizations</h3>
+
+<EntityTable Collection="@UserOrganizations" Type="@typeof(Organization)"/>
+
+@code {
+    private IEnumerable<Organization> UserOrganizations { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        UserOrganizations = OrganizationContext.UserOrganizations(await UserService.GetCurrentUser());
+    }
+}
