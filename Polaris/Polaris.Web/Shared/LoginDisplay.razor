@@ -1,7 +1,11 @@
-﻿<AuthorizeView>
+﻿@using Polaris.Application.Entities.Users
+@inject IUserService UserService
+
+<AuthorizeView>
     <Authorized>
         @if (context.User.Claims.Any(c => c.Type == "name"))
         {
+            <LettersAvatar User="@CurrentUser"/>
             @($"Hello, {@context.User.Claims.FirstOrDefault(c => c.Type == "name")?.Value}!")
         }
         <a href="AzureAD/Account/SignOut">Log out</a>
@@ -10,3 +14,13 @@
         <a href="AzureAD/Account/SignIn">Log in</a>
     </NotAuthorized>
 </AuthorizeView>
+
+@code
+{
+    User CurrentUser { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentUser = await UserService.GetCurrentUser();
+    }
+}

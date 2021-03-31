@@ -1,0 +1,57 @@
+﻿@using Polaris.Application.Entities.Users
+@using Polaris.Application.Entities
+@if (User != null)
+{
+    <svg height="100" width="100">
+        <circle cx="50" cy="50" r="@Radius" stroke="black" stroke-width="0" fill="@GetColorFromGuid(User)" />
+        <text x="50%" y="50%" text-anchor="middle" stroke="black" stroke-width="1px" dy=".3em" font-size="1em" font-family="Helvetica">@GetAbbreviated(User)</text>
+    </svg>
+}
+
+@code {
+    
+    [Parameter]
+    public User User { get; set; }
+
+    [Parameter]
+    public int Radius { get; set; } = 20;
+    
+
+    private static string GetAbbreviated(User user)
+    {
+        var abbreviated = $"{user.FirstName[0]}{user.LastName[0]}";
+        return abbreviated.ToUpper();
+    }
+    
+    private static string GetColorFromGuid(IEntity user)
+    {
+        var rnd = new Random(user.Id.GetHashCode());
+        return _colors[rnd.Next(0, _colors.Length - 1)];
+    }
+
+    private static string[] _colors = {
+        "#498a96",
+        "#529aa7",
+        "#61a5b2",
+        "#72afba",
+        "#83b9c2",
+        "#94c2cb",
+        "#a5ccd3",
+        "#669da7",
+        "#5b8c94",
+        "#4f7a82",
+        "#44696f",
+        "#39575d",
+        "#2d464a",
+        "#72baa1",
+        "#80c0aa",
+        "#8ec7b3",
+        "#9ccebd",
+        "#aad5c6",
+        "#b8dcd0",
+        "#c6e3d9",
+        "#d4eae2",
+        "#e2f1ec",
+        "#f0f8f5",
+    };
+}
