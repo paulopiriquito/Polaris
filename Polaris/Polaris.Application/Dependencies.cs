@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Polaris.Application.VotingPokerSession;
 
 namespace Polaris.Application
 {
@@ -6,6 +7,7 @@ namespace Polaris.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddSingleton<PlaningPokerSessionFactory>();
             return services;
         }
     }

@@ -1,4 +1,4 @@
-﻿using Polaris.Application.Entities.Organisations;
+﻿using Polaris.Domain.Entities.Organisations;
 
 namespace Polaris.Application.Repositories.DataContexts
 {

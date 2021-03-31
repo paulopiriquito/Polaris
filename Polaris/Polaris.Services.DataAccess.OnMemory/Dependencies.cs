@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.Extensions.DependencyInjection;
 using Polaris.Application.Repositories.DataContexts;
 using Polaris.Services.DataAccess.OnMemory.DataContexts;
+
+[assembly: InternalsVisibleTo("Polaris.Services.DataAccess.OnMemory.Tests")]
 
 namespace Polaris.Services.DataAccess.OnMemory
 {

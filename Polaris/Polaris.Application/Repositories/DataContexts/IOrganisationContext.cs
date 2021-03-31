@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Polaris.Application.Entities.Organisations;
-using Polaris.Application.Entities.Users;
+using Polaris.Domain.Entities.Organisations;
+using Polaris.Domain.Entities.Users;
 
 namespace Polaris.Application.Repositories.DataContexts
 {

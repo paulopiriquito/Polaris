@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Polaris.Application\Polaris.Application.csproj" />
+      <ProjectReference Include="..\Polaris.Services.Identity\Polaris.Services.Identity.csproj" />
     </ItemGroup>
 
     <ItemGroup>

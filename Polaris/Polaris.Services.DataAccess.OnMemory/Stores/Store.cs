@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Polaris.Application.Entities;
 using Polaris.Application.Repositories;
+using Polaris.Domain.Entities;
 
 namespace Polaris.Services.DataAccess.OnMemory.Stores
 {

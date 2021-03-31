@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Polaris.Application.Repositories.DataContexts;
 using Polaris.Application.Services;
+using Polaris.Services.Identity;
 
 namespace Polaris.Services
 {

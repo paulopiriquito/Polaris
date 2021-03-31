@@ -1,6 +1,6 @@
-﻿using Polaris.Application.Entities.Users;
-using Polaris.Application.Repositories;
+﻿using Polaris.Application.Repositories;
 using Polaris.Application.Repositories.DataContexts;
+using Polaris.Domain.Entities.Users;
 using Polaris.Services.DataAccess.OnMemory.Stores;
 
 namespace Polaris.Services.DataAccess.OnMemory.DataContexts

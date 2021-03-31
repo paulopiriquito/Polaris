@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Polaris.Application.Entities.Users;
+using Polaris.Domain.Entities.Users;
 
 namespace Polaris.Application.Services
 {

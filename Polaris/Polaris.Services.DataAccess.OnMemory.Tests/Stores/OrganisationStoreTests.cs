@@ -1,10 +1,9 @@
 ﻿using System;
-using Polaris.Application.Entities.Organisations;
-using Polaris.Application.Entities.Users;
-using Polaris.Application.Entities.Users.Types;
 using Polaris.Application.Repositories.DataContexts;
+using Polaris.Domain.Entities.Organisations;
+using Polaris.Domain.Entities.Users;
+using Polaris.Domain.Entities.Users.Types;
 using Polaris.Services.DataAccess.OnMemory.DataContexts;
-using Polaris.Services.DataAccess.OnMemory.Stores;
 using Shouldly;
 using Xunit;
 

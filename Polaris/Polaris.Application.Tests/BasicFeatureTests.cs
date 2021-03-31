@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Polaris.Application.Entities.Configurations;
-using Polaris.Application.Entities.Organisations;
-using Polaris.Application.Entities.Quantifiers;
-using Polaris.Application.Entities.Targets;
-using Polaris.Application.Entities.Users;
-using Polaris.Application.Entities.Users.Types;
+using Polaris.Domain.Entities.Configurations;
+using Polaris.Domain.Entities.Organisations;
+using Polaris.Domain.Entities.Quantifiers;
+using Polaris.Domain.Entities.Targets;
+using Polaris.Domain.Entities.Users;
+using Polaris.Domain.Entities.Users.Types;
 using Shouldly;
 using Xunit;
 

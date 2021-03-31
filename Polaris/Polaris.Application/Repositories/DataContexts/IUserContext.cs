@@ -1,4 +1,4 @@
-﻿using Polaris.Application.Entities.Users;
+﻿using Polaris.Domain.Entities.Users;
 
 namespace Polaris.Application.Repositories.DataContexts
 {
